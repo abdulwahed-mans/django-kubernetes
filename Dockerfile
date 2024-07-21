@@ -16,7 +16,7 @@ COPY .env .env
 
 # Set environment variables for Django
 ENV DJANGO_SETTINGS_MODULE=backend.settings
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONUNBUFFERED=1
 
 # Collect static files
 RUN python manage.py collectstatic --noinput
