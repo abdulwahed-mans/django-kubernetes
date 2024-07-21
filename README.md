@@ -51,7 +51,7 @@ This guide walks you through setting up a Django project, packaging it as a Dock
    Ensure you have a `requirements.txt` file with all required packages, including Django:
 
    ```
-   Django==3.2
+   Django
    ```
 
 4. **Build and Push the Docker Image**
