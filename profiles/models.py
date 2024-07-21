@@ -15,7 +15,7 @@ class Profile(models.Model):
     bio = models.TextField(blank=True)
 
     # ImageField is a type of field that stores an image.
-    avatar = models.ImageField(upload_to='profile_pics', blank=True)
+    #avatar = models.ImageField(upload_to='profile_pics', blank=True)
     
     # Timestamps
     created_at = models.DateTimeField(auto_now_add=True)
