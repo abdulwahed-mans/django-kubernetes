@@ -4,9 +4,9 @@ This guide walks you through setting up a Django project, packaging it as a Dock
 
 **Prerequisites:**
 
-* Docker Desktop (with Kubernetes enabled)
-* Python 3.9 or later
-* Django 3.2 or later
+- Docker Desktop (with Kubernetes enabled)
+- Python 3.9 or later
+- Django 3.2 or later
 
 **Steps:**
 
@@ -44,7 +44,24 @@ This guide walks you through setting up a Django project, packaging it as a Dock
 
    # Run the development server
    CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+
+
    ```
+
+```bash
+# Build and run containers
+docker-compose up -d --build
+
+# Run migrations
+docker-compose exec web python manage.py migrate
+
+# Create a superuser
+docker-compose exec web python manage.py createsuperuser
+
+# Load demo data
+docker-compose exec web python manage.py loaddata profiles.json
+
+```
 
 3. **Create requirements.txt**
 
@@ -89,14 +106,14 @@ This guide walks you through setting up a Django project, packaging it as a Dock
            service: django
        spec:
          containers:
-          - name: django-service
-            image: abedulwahed/backend:latest
-            imagePullPolicy: Always
-            env:
-             - name: POSTGRES_PASSWORD
-               value: mysecretpassword
-            ports:
-             - containerPort: 8000
+           - name: django-service
+             image: abedulwahed/backend:latest
+             imagePullPolicy: Always
+             env:
+               - name: POSTGRES_PASSWORD
+                 value: mysecretpassword
+             ports:
+               - containerPort: 8000
    ---
    apiVersion: v1
    kind: Service
@@ -108,9 +125,9 @@ This guide walks you through setting up a Django project, packaging it as a Dock
      selector:
        service: django
      ports:
-     - port: 8000
-       targetPort: 8000
-       nodePort: 30001
+       - port: 8000
+         targetPort: 8000
+         nodePort: 30001
    ```
 
    **Note:** Replace `mysecretpassword` with your actual password for the PostgreSQL database.
